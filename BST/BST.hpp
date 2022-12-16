@@ -155,3 +155,33 @@ void BST<T>::clear_help(Node*& head) {
         head = nullptr; 
     }
 }
+
+
+template <typename T>
+void BST<T>::preorder() {
+    printPreOreder(root);
+}
+
+template <typename T>
+void BST<T>::printPreOreder(Node* head) {
+    if (head != nullptr) {
+        std::cout << " " << head->data;
+        printPreOreder(head->left);
+        printPreOreder(head->right);
+    }
+}
+
+
+template <typename T>
+void BST<T>::postorder() {
+    printPreOreder(root);
+}
+
+template <typename T>
+void BST<T>::printpostorder(Node* head) {
+    if (head != nullptr) {
+        printpostorder(head->left);
+        printpostorder(head->right);
+        std::cout << " " << head->data;
+    }
+}

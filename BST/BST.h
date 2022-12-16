@@ -38,6 +38,8 @@ private:
     Node* find_help(Node*, T);//
     void clear_help(Node*&);//
     size_t high_help(Node*);//
+    void printPreOreder(Node*);
+    void printpostorder(Node* head);
 };
 
 #endif // BST_H

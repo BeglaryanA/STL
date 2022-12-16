@@ -7,10 +7,7 @@ int main() {
     bs.insert(4);
     bs.insert(6);
     bs.insert(8);
-    bs.levelorder();
-    bs.clear();
-    std::cout << std::endl;
-    bs.levelorder();
+    bs.preorder();
     
 
 
