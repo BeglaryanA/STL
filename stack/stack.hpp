@@ -10,6 +10,109 @@ stack<T>::stack()
 {}
 
 template <typename T>
+stack<T>::stack(const stack& rhs) {
+    if (!rhs.head) {
+        return;
+    }
+    this->m_size = rhs.m_size;
+    this->head = new Node(rhs.head->data);
+    Node* tmp = this->head;
+    Node* tmp_rhs = rhs.head->next;
+    while (tmp_rhs) {
+        Node* newNode = new Node(tmp_rhs->data); 
+        tmp->next = newNode;
+        tmp->next->prev = tmp;
+        tmp = tmp->next;
+        tmp_rhs = tmp_rhs->next;
+    }
+    this->tail = tmp;
+}
+
+template <typename T>
+stack<T>::stack(stack&& rhs) {
+    if (!rhs.head) {
+        return;
+    }
+    this->m_size = rhs.m_size;
+    this->head = new Node(rhs.head->data);
+    Node* tmp = this->head;
+    Node* tmp_rhs = rhs.head->next;
+    while (tmp_rhs) {
+        Node* newNode = new Node(tmp_rhs->data); 
+        tmp->next = newNode;
+        tmp->next->prev = tmp;
+        tmp = tmp->next;
+        tmp_rhs = tmp_rhs->next;
+    }
+    this->tail = tmp;
+    Node* del;
+    while (rhs.head) {
+        del = rhs.head;
+        rhs.head = rhs.head->next;
+        delete del;
+    }
+    rhs.head = nullptr;
+    rhs.tail = nullptr;
+    rhs.m_size = 0;
+}
+
+
+template <typename  T>
+stack<T>& stack<T>::operator=(const stack<T>& rhs) {
+    if (!rhs.head) {
+        return *this;
+    }
+    if (*this == &rhs) {
+        return *this;
+    }
+    this->m_size = rhs.m_size;
+    this->head = new Node(rhs.head->data);
+    Node* tmp = this->head;
+    Node* tmp_rhs = rhs.head->next;
+    while (tmp_rhs) {
+        Node* newNode = new Node(tmp_rhs->data); 
+        tmp->next = newNode;
+        tmp->next->prev = tmp;
+        tmp = tmp->next;
+        tmp_rhs = tmp_rhs->next;
+    }
+    this->tail = tmp;
+    return *this;
+}
+
+
+template <typename  T>
+stack<T>& stack<T>::operator=(stack<T>&& rhs) {
+    if (!rhs.head) {
+        return *this;
+    }
+    if (*this == &rhs) {
+        return *this;
+    }
+    this->m_size = rhs.m_size;
+    this->head = new Node(rhs.head->data);
+    Node* tmp = this->head;
+    Node* tmp_rhs = rhs.head->next;
+    while (tmp_rhs) {
+        Node* newNode = new Node(tmp_rhs->data); 
+        tmp->next = newNode;
+        tmp->next->prev = tmp;
+        tmp = tmp->next;
+        tmp_rhs = tmp_rhs->next;
+    }
+    this->tail = tmp;
+    Node* del;
+    while (rhs.head) {
+        del = rhs.head;
+        rhs.head = rhs.head->next;
+        delete del;
+    }
+    rhs.head = nullptr;
+    rhs.tail = nullptr;
+    rhs.m_size = 0;
+    return *this;
+}
+template <typename T>
 void stack<T>::push(const T& rhs) {
     if (!this->head) {
         Node* tmp = new Node(rhs);
@@ -90,7 +193,7 @@ stack<T>::~stack() {
         return;
     }
     Node* tmp = this->head;
-    while (!this->head->next) {
+    while (this->head->next) {
         tmp = this->head;
         this->head = this->head->next;
         delete tmp;

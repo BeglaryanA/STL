@@ -31,7 +31,21 @@ public:
     const T top() const;
     const std::size_t size() const;
     std::size_t size();
+    void print_f() {
+        Node* tmp = this->head;
+        while (tmp) {
+            std::cout << tmp->data << " ";
+            tmp = tmp->next;
+        }
+    }
+    void print_r() {
+        Node* tmp = this->tail;
+        while (tmp) {
+            std::cout << tmp->data << " ";
+            tmp = tmp->prev;
 
+        }
+    }
 };
 
 
