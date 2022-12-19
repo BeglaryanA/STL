@@ -169,6 +169,8 @@ std::size_t stack<T>::size()  {
 template <typename T>
 void stack<T>::swap(stack& rhs) {
     std::swap(this->head, rhs.head);
+    std::swap(this->tail, rhs.tail);
+
 }
 
 template <typename T>
