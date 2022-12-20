@@ -34,6 +34,7 @@ bool  HashTable<HashObject>::remove(const HashObject& rhs) {
 
 }
 
+
 template <typename HashObject>
 bool HashTable<HashObject>::insert(const HashObject& rhs) {
     auto& wichList = theList[myHash(rhs)];

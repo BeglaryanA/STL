@@ -3,6 +3,7 @@
 #include "hash.h"
 #include <string>
 
+
 template <>
 class Hash<std::string> {
 public:

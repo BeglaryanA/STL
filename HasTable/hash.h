@@ -2,6 +2,7 @@
 #define HASH_H
 #include <cstddef>
 
+
 template <typename Key>
 class Hash {
 public:

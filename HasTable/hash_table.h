@@ -17,13 +17,6 @@ public:
     bool insert(const HashObject&);
     bool insert(HashObject&&);
     bool remove(const HashObject&);
-    void print() {
-        for (int i = 0; i < theList.size(); ++i) {
-            for (auto it = theList[i].begin(); it != theList[i].end(); ++it) {
-                std::cout << *it << " ";
-            } 
-        }
-    }
 private:
     size_t myHash(const HashObject&);
     void reHash();
