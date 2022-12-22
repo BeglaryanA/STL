@@ -51,32 +51,17 @@ public:
     void pop_front();
     bool empty();
     void clear();
-
     iterator begin();
     iterator end();
-
+    iterator begin() const;
+    iterator end() const;
     void erase(iterator, iterator);
     void erase(iterator);
     void insert(iterator, const T& );
-
     size_t size();
-public:
-    void print_forward() {
-        Node* tmp = this->head;
-        while (tmp) {
-            std::cout << tmp->data <<  " ";
-            tmp = tmp->next;
-        }
-        std::cout << std::endl;
-    }
-    void print_reverse() {
-        Node* tmp = this->tail;
-        while (tmp) {
-            std::cout << tmp->data << " ";
-            tmp = tmp->prev;
-        }
-        std::cout << std::endl;
-    }
+    size_t size() const;
+    void merge(list&);
+    void merge(list&&);
 };
 
 #endif  //D_LIST_H

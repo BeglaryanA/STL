@@ -234,6 +234,16 @@ typename list<T>::iterator list<T>::end() {
 }
 
 template <typename T>
+typename list<T>::iterator list<T>::begin() const {
+    return list<T>::iterator(this->head);
+}
+
+template <typename T>
+typename list<T>::iterator list<T>::end() const {
+    return list<T>::iterator(this->tail->next);
+}
+
+template <typename T>
 list<T>::iterator::~iterator() {
     this->it = nullptr;
 }
@@ -284,5 +294,93 @@ void list<T>::insert(iterator input, const T& rhs) {
 
 }
 
+template <typename T>
+size_t list<T>::size() {
+    int count = 0;
+    Node* tmp = this->head;
+    while (tmp) {
+        tmp = tmp->next;
+        ++count;
+    }
+    return count;
+}
+
+template <typename T>
+size_t list<T>::size() const {
+    int count = 0;
+    Node* tmp = this->head;
+    while (tmp) {
+        tmp = tmp->next;
+        ++count;
+    }
+    return count;
+}
+
+template <typename T>
+void list<T>::merge(list<T>& rhs) {
+    rhs.tail->next = this->head->next;
+    this->head->next->prev = rhs.tail;
+    this->head->next = rhs.head;
+    rhs.head->prev = this->head;
+    rhs.head = nullptr;
+    rhs.tail = nullptr;
+}
+
+template <typename T>
+bool operator<(const list<T>& lhs, const list<T>& rhs) {
+    if (lhs.size() > rhs.size()) { return false; }
+    typename list<T>::iterator lhsIter(lhs.begin());
+    typename list<T>::iterator rhsIter(rhs.begin());
+    while (lhsIter != lhs.end()) {
+        if (*lhsIter >= *rhsIter) { return false; }
+        ++lhsIter;
+        ++rhsIter;
+    }
+    return true;
+
+}
+
+
+template <typename T>
+bool operator>(const list<T>& lhs, const list<T>& rhs) {
+    if (lhs.size() < rhs.size()) { return false; }
+    typename list<T>::iterator lhsIter(lhs.begin());
+    typename list<T>::iterator rhsIter(rhs.begin());
+    while (lhsIter != lhs.end()) {
+        if (*lhsIter <= *rhsIter) { return false; }
+        ++lhsIter;
+        ++rhsIter;
+    }
+    return true;
+
+}
+
+template <typename T>
+bool operator==(const list<T>& lhs, const list<T>& rhs) {
+    if (lhs.size() != rhs.size()) { return false; }
+    typename list<T>::iterator lhsIter(lhs.begin());
+    typename list<T>::iterator rhsIter(rhs.begin());
+    while (lhsIter != lhs.end()) {
+        if (*lhsIter != *rhsIter) { return false; }
+        ++lhsIter;
+        ++rhsIter;
+    }
+    return true;
+
+}
+
+template <typename T>
+bool operator!=(const list<T>& lhs, const list<T>& rhs) {
+    if (lhs.size() == rhs.size()) { return false; }
+    typename list<T>::iterator lhsIter(lhs.begin());
+    typename list<T>::iterator rhsIter(rhs.begin());
+    while (lhsIter != lhs.end()) {
+        if (*lhsIter == *rhsIter) { return false; }
+        ++lhsIter;
+        ++rhsIter;
+    }
+    return true;
+
+}
 
 #endif // LIST_HPP
