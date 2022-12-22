@@ -71,7 +71,9 @@ public:
     iterator end();
     iterator begin() const ;
     iterator end() const ;
-    void merg(forward_list&);
+    void merge(forward_list&);
+    void merge(forward_list&&);
+
 };
 
 

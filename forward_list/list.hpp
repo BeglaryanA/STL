@@ -213,7 +213,18 @@ const forward_list<T>& forward_list<T>::operator[](std::size_t ind) const {
 }
 
 template <typename T>
-void forward_list<T>::merg(forward_list<T>& rhs) {
+void forward_list<T>::merge(forward_list<T>& rhs) {
+    Node* tmp = rhs.head;
+    while (tmp->next) {
+        tmp = tmp->next;
+    }
+    tmp->next = this->head->next;
+    this->head->next = rhs.head;
+    rhs.head = nullptr;
+}
+
+template <typename T>
+void forward_list<T>::merge(forward_list<T>&& rhs) {
     Node* tmp = rhs.head;
     while (tmp->next) {
         tmp = tmp->next;
