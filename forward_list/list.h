@@ -64,10 +64,14 @@ public:
     void clear();
     bool empty();
     size_t size();
+    const size_t size() const;
     void push_front(T);
     void pop_front();
     iterator begin();
     iterator end();
+    iterator begin() const ;
+    iterator end() const ;
+    void merg(forward_list&);
 };
 
 
