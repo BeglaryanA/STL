@@ -14,7 +14,9 @@ class queue {
         Node(T&& rhs) : data{rhs}, next{nullptr}, prev{nullptr} {}
     }*head, *tail;
     std::size_t m_size;
+
 public:
+
     queue();
     queue(const queue&);
     queue(queue&&);
