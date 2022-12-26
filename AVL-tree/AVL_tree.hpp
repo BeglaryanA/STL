@@ -141,10 +141,10 @@ void AVL<T>::get_balance(Node*& t) {
         t = right_right_rotation(t);
     }
     if (bf < -1 && t->right->left != nullptr) {
-        t = left_left_rotation(t);
+        t = left_right_rotation(t);
     }
     if (bf > 1 && t->left->right != nullptr) {
-        t = right_right_rotation(t);
+        t = right_left_rotation(t);
     }
     
 }
