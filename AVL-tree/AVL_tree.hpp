@@ -129,7 +129,6 @@ int AVL<T>::balanc_factor(Node* t) {
 
 template <typename T>
 void AVL<T>::get_balance(Node*& t) {
-    // std::cout << " get_balance " << t->data << std::endl;
     if (t->left == nullptr && t->right == nullptr) {
         return;
     }
